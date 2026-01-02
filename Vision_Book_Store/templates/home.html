@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Best Sellers</h2>
+<div class="row">
+{% for book in best_sellers %}
+  <div class="col-md-3">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ book.title }}</h5>
+        <p>{{ book.author }}</p>
+        <strong>{{ book.price }} EGP</strong>
+        {% if user.is_authenticated %}
+          <a href="/cart/add/{{ book.id }}/" class="btn btn-sm btn-primary mt-2">Add to Cart</a>
+        {% else %}
+          <a href="/accounts/login/" class="btn btn-sm btn-secondary mt-2">Login to Buy</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>All Books</h2>
+<div class="row">
+{% for book in books %}
+  <div class="col-md-3">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ book.title }}</h5>
+        <p>{{ book.author }}</p>
+        <strong>{{ book.price }} EGP</strong>
+        {% if user.is_authenticated %}
+          <a href="/cart/add/{{ book.id }}/" class="btn btn-sm btn-primary mt-2">Add to Cart</a>
+        {% else %}
+          <a href="/accounts/login/" class="btn btn-sm btn-secondary mt-2">Login to Buy</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}
